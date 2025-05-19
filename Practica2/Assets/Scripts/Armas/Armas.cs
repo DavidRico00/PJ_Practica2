@@ -2,7 +2,6 @@ using UnityEngine;
 
 public abstract class Armas : MonoBehaviour
 {
-    public int indice;
     public float damage, range;
     protected Camera camara;
 

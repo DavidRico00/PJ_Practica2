@@ -5,7 +5,8 @@ public class AK47Script : Armas
 {
     protected override void SetTransform()
     {
-        transform.localPosition = new Vector3(9.59f, 0.9f, -1.58f);
+        Debug.Log("AK47Script SetTransform called");
         transform.localScale = new Vector3(1f, 1f, -1f);
+        transform.localPosition = new Vector3(0.195f, -0.113f, 0.337f);
     }
 }
