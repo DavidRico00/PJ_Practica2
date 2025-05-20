@@ -19,9 +19,14 @@ public class InputManager : MonoBehaviour
         inputSuelo = playerInput.Suelo;
 
         inputSuelo.Salto.performed += ctx => playerController.Saltar();
+        inputSuelo.Correr.started += ctx => playerController.Correr();
+        inputSuelo.Correr.canceled += ctx => playerController.Correr();
+        
         inputSuelo.Recargar.performed += ctx => playerGunController.Recargar();
         inputSuelo.Disparar.started += ctx => IniciarDisparo();
         inputSuelo.Disparar.canceled += ctx => DetenerDisparo();
+        inputSuelo.Apuntar.started += ctx => playerGunController.Apuntar();
+        inputSuelo.Apuntar.canceled += ctx => playerGunController.Desapuntar();
 
         inputSuelo.Pause.performed += ctx => gameManager.Pause();
         inputSuelo.BOTON_PRUEBAS.performed += ctx => gameManager.BotonPruebas();

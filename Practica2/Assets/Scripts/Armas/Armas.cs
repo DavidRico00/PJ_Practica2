@@ -12,6 +12,7 @@ public abstract class Armas : MonoBehaviour
     private LayerMask enemigoLayer;
     public AudioClip disparoS, recargaS, noAmmoS;
     private AudioSource audioSource;
+    protected Animator animator;
 
     private void Start()
     {
@@ -19,13 +20,15 @@ public abstract class Armas : MonoBehaviour
         camara = GetComponentInParent<Camera>();
         audioSource = camara.GetComponent<AudioSource>();
         enemigoLayer = LayerMask.GetMask("Enemigo");
+        animator = GetComponent<Animator>();      
+
         SetTransform();
         actualizarHUD();
     }
 
     public void Shoot()
     {
-        if(isReloading)
+        if (isReloading)
             return;
         if (cargador == 0)
         {
@@ -56,6 +59,7 @@ public abstract class Armas : MonoBehaviour
 
     private IEnumerator RecargarDespuesDeSonido()
     {
+        animator.SetBool("recargando", true);
         audioSource.PlayOneShot(recargaS);
 
         yield return new WaitForSeconds(recargaS.length);
@@ -68,6 +72,7 @@ public abstract class Armas : MonoBehaviour
         reservas -= toReload;
         isReloading = false;
         actualizarHUD();
+        animator.SetBool("recargando", false);
     }
 
     protected virtual void SetTransform() { }
@@ -75,5 +80,34 @@ public abstract class Armas : MonoBehaviour
     protected void actualizarHUD()
     {
         cargadorHUD.text = String.Format("{0}/{1}", cargador, reservas);
+    }
+
+
+    protected bool apuntando;
+    public void Apuntar()
+    {
+        animator.SetBool("meteMira", true);
+        apuntando = true;
+    }
+
+    public void Desapuntar()
+    {
+        animator.SetBool("meteMira", false);
+        apuntando = false;
+    }
+
+    public void setApuntando()
+    {
+        animator.SetBool("apuntando", apuntando);
+        if (apuntando)
+        {
+
+        }
+        else
+        {
+
+        }
+
+
     }
 }
