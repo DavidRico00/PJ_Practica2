@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
                 promptText.text = interactuable.promptText;
                 if (inputManager.inputSuelo.Interactuar.triggered)
                     interactuable.BaseInteract();
-            }
+            }        
     }
 
     public void ProcesarMovimiento(Vector2 input)
@@ -66,4 +66,13 @@ public class PlayerController : MonoBehaviour
         if (isGrounded)
             pVelocidad.y = Mathf.Sqrt(fuerzaSalto * -3f * gravedad);
     }
+
+    public void Correr()
+    {
+        if (velocidad == 5f)
+            velocidad = 8f;
+        else
+            velocidad = 5f;
+    }
+
 }

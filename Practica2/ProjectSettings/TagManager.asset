@@ -7,6 +7,8 @@ TagManager:
   - GameManager
   - SpawnPoint
   - PanelPausa
+  - MiraPuntoRojo
+  - MiraDefault
   layers:
   - Default
   - TransparentFX

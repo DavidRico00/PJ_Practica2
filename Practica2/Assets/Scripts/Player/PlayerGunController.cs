@@ -50,8 +50,18 @@ public class PlayerGunController : MonoBehaviour
             armaActual.Reload();
     }
 
+    public void Apuntar()
+    {
+        if (armaActual != null && !gameManager.isPaused)
+            armaActual.Apuntar();
+    }
 
-    
+    public void Desapuntar()
+    {
+        if (armaActual != null && !gameManager.isPaused)
+            armaActual.Desapuntar();
+    }
 
-    
+
+
 }

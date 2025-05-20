@@ -162,6 +162,24 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Apuntar"",
+                    ""type"": ""Button"",
+                    ""id"": ""8c70806f-0a12-45fe-a691-2ddf6e83852c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Correr"",
+                    ""type"": ""Button"",
+                    ""id"": ""96a15f0d-7aa1-42e4-b8d4-b11bb0e2d1d3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -426,6 +444,28 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7a89e7b3-a37b-4272-9694-0eeb9946bb50"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Apuntar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5b1d416a-a27b-4394-8a1d-4767f4385779"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Correr"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -960,6 +1000,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Suelo_Interactuar = m_Suelo.FindAction("Interactuar", throwIfNotFound: true);
         m_Suelo_Disparar = m_Suelo.FindAction("Disparar", throwIfNotFound: true);
         m_Suelo_Recargar = m_Suelo.FindAction("Recargar", throwIfNotFound: true);
+        m_Suelo_Apuntar = m_Suelo.FindAction("Apuntar", throwIfNotFound: true);
+        m_Suelo_Correr = m_Suelo.FindAction("Correr", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1061,6 +1103,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Suelo_Interactuar;
     private readonly InputAction m_Suelo_Disparar;
     private readonly InputAction m_Suelo_Recargar;
+    private readonly InputAction m_Suelo_Apuntar;
+    private readonly InputAction m_Suelo_Correr;
     /// <summary>
     /// Provides access to input actions defined in input action map "Suelo".
     /// </summary>
@@ -1104,6 +1148,14 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Suelo/Recargar".
         /// </summary>
         public InputAction @Recargar => m_Wrapper.m_Suelo_Recargar;
+        /// <summary>
+        /// Provides access to the underlying input action "Suelo/Apuntar".
+        /// </summary>
+        public InputAction @Apuntar => m_Wrapper.m_Suelo_Apuntar;
+        /// <summary>
+        /// Provides access to the underlying input action "Suelo/Correr".
+        /// </summary>
+        public InputAction @Correr => m_Wrapper.m_Suelo_Correr;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1154,6 +1206,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Recargar.started += instance.OnRecargar;
             @Recargar.performed += instance.OnRecargar;
             @Recargar.canceled += instance.OnRecargar;
+            @Apuntar.started += instance.OnApuntar;
+            @Apuntar.performed += instance.OnApuntar;
+            @Apuntar.canceled += instance.OnApuntar;
+            @Correr.started += instance.OnCorrer;
+            @Correr.performed += instance.OnCorrer;
+            @Correr.canceled += instance.OnCorrer;
         }
 
         /// <summary>
@@ -1189,6 +1247,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Recargar.started -= instance.OnRecargar;
             @Recargar.performed -= instance.OnRecargar;
             @Recargar.canceled -= instance.OnRecargar;
+            @Apuntar.started -= instance.OnApuntar;
+            @Apuntar.performed -= instance.OnApuntar;
+            @Apuntar.canceled -= instance.OnApuntar;
+            @Correr.started -= instance.OnCorrer;
+            @Correr.performed -= instance.OnCorrer;
+            @Correr.canceled -= instance.OnCorrer;
         }
 
         /// <summary>
@@ -1480,6 +1544,20 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnRecargar(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Apuntar" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnApuntar(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Correr" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCorrer(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.
