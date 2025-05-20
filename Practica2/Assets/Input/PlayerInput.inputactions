@@ -6,6 +6,24 @@
             "id": "62e0909d-cf90-4d5b-b40f-f99a1ab91f42",
             "actions": [
                 {
+                    "name": "BOTON_PRUEBAS",
+                    "type": "Button",
+                    "id": "ca254ee5-c599-40d3-9295-e2d0edafadbc",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "964918a3-c52d-427f-8647-21eba0e3122d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Movimiento",
                     "type": "Value",
                     "id": "8fe438fe-b09d-4297-8a2b-895c7d18863f",
@@ -51,9 +69,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "BOTON_PRUEBAS",
+                    "name": "Recargar",
                     "type": "Button",
-                    "id": "ca254ee5-c599-40d3-9295-e2d0edafadbc",
+                    "id": "f39070d0-dc7b-47a6-91ee-66e52b8a89e3",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -289,6 +307,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "BOTON_PRUEBAS",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3529a1cd-c5a6-4f14-bc55-fc5130dadecb",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Recargar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9e2777be-d922-466d-bb4c-351f8e7e44e9",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Recargar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2faa0cb1-773a-48dc-a417-5b2d6ae8f8a7",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

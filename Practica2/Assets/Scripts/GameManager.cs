@@ -40,6 +40,28 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(escena);
     }
 
+    public bool isPaused = false;
+    public GameObject menuPause;
+    public void Pause()
+    {
+        if (!isPaused)
+        {
+            Time.timeScale = 0;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            menuPause.SetActive(true);
+        }
+        else
+        {
+            Time.timeScale = 1;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            menuPause.SetActive(false);
+        }
+
+        isPaused = !isPaused;
+    }
+
     bool i = false;
     public void BotonPruebas()
     {

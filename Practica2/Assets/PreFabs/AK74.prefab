@@ -188,9 +188,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11d10bc1e3991524bbeeeda68d08cfbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  indice: 0
-  damage: 20
+  damage: 25
   range: 100
+  cargador: 30
+  cargadorMax: 30
+  reservas: 999
+  enemigoLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  disparoS: {fileID: 8300000, guid: 905e61174786bdc419a8e34fb883c21e, type: 3}
+  recargaS: {fileID: 8300000, guid: 07a07d1ff5e683944afc9990ca061ce0, type: 3}
+  noAmmoS: {fileID: 8300000, guid: 7a7bb7c3265ae674fa07edb37fbf0a68, type: 3}
 --- !u!1 &3348903255872377978
 GameObject:
   m_ObjectHideFlags: 0

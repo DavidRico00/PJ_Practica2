@@ -3,10 +3,16 @@ using UnityEngine;
 
 public class PlayerGunController : MonoBehaviour
 {
-    public GameObject armaActualPrefab;
-    public Armas armaActual;
+    private GameManager gameManager;
+    private GameObject armaActualPrefab;
+    private Armas armaActual;
     public GameObject[] referenciasArmas;
     public Transform donde;
+
+    void Start()
+    {
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+    }
 
     public void SetGameObjectArma(int indice)
     {
@@ -34,11 +40,18 @@ public class PlayerGunController : MonoBehaviour
 
     public void Disparar()
     {
-        if (armaActual != null)
-        {
+        if (armaActual != null && !gameManager.isPaused)
             armaActual.Shoot();
-        }
-    }   
+    }
+
+    public void Recargar()
+    {
+        if (armaActual != null && !gameManager.isPaused)
+            armaActual.Reload();
+    }
 
 
+    
+
+    
 }
