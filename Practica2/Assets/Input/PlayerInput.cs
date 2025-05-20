@@ -92,6 +92,24 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             ""id"": ""62e0909d-cf90-4d5b-b40f-f99a1ab91f42"",
             ""actions"": [
                 {
+                    ""name"": ""BOTON_PRUEBAS"",
+                    ""type"": ""Button"",
+                    ""id"": ""ca254ee5-c599-40d3-9295-e2d0edafadbc"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""964918a3-c52d-427f-8647-21eba0e3122d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Movimiento"",
                     ""type"": ""Value"",
                     ""id"": ""8fe438fe-b09d-4297-8a2b-895c7d18863f"",
@@ -137,9 +155,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""BOTON_PRUEBAS"",
+                    ""name"": ""Recargar"",
                     ""type"": ""Button"",
-                    ""id"": ""ca254ee5-c599-40d3-9295-e2d0edafadbc"",
+                    ""id"": ""f39070d0-dc7b-47a6-91ee-66e52b8a89e3"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -375,6 +393,39 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""BOTON_PRUEBAS"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3529a1cd-c5a6-4f14-bc55-fc5130dadecb"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Recargar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9e2777be-d922-466d-bb4c-351f8e7e44e9"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Recargar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2faa0cb1-773a-48dc-a417-5b2d6ae8f8a7"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -901,12 +952,14 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
 }");
         // Suelo
         m_Suelo = asset.FindActionMap("Suelo", throwIfNotFound: true);
+        m_Suelo_BOTON_PRUEBAS = m_Suelo.FindAction("BOTON_PRUEBAS", throwIfNotFound: true);
+        m_Suelo_Pause = m_Suelo.FindAction("Pause", throwIfNotFound: true);
         m_Suelo_Movimiento = m_Suelo.FindAction("Movimiento", throwIfNotFound: true);
         m_Suelo_Salto = m_Suelo.FindAction("Salto", throwIfNotFound: true);
         m_Suelo_Mirar = m_Suelo.FindAction("Mirar", throwIfNotFound: true);
         m_Suelo_Interactuar = m_Suelo.FindAction("Interactuar", throwIfNotFound: true);
         m_Suelo_Disparar = m_Suelo.FindAction("Disparar", throwIfNotFound: true);
-        m_Suelo_BOTON_PRUEBAS = m_Suelo.FindAction("BOTON_PRUEBAS", throwIfNotFound: true);
+        m_Suelo_Recargar = m_Suelo.FindAction("Recargar", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1000,12 +1053,14 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     // Suelo
     private readonly InputActionMap m_Suelo;
     private List<ISueloActions> m_SueloActionsCallbackInterfaces = new List<ISueloActions>();
+    private readonly InputAction m_Suelo_BOTON_PRUEBAS;
+    private readonly InputAction m_Suelo_Pause;
     private readonly InputAction m_Suelo_Movimiento;
     private readonly InputAction m_Suelo_Salto;
     private readonly InputAction m_Suelo_Mirar;
     private readonly InputAction m_Suelo_Interactuar;
     private readonly InputAction m_Suelo_Disparar;
-    private readonly InputAction m_Suelo_BOTON_PRUEBAS;
+    private readonly InputAction m_Suelo_Recargar;
     /// <summary>
     /// Provides access to input actions defined in input action map "Suelo".
     /// </summary>
@@ -1017,6 +1072,14 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// Construct a new instance of the input action map wrapper class.
         /// </summary>
         public SueloActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Suelo/BOTON_PRUEBAS".
+        /// </summary>
+        public InputAction @BOTON_PRUEBAS => m_Wrapper.m_Suelo_BOTON_PRUEBAS;
+        /// <summary>
+        /// Provides access to the underlying input action "Suelo/Pause".
+        /// </summary>
+        public InputAction @Pause => m_Wrapper.m_Suelo_Pause;
         /// <summary>
         /// Provides access to the underlying input action "Suelo/Movimiento".
         /// </summary>
@@ -1038,9 +1101,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Disparar => m_Wrapper.m_Suelo_Disparar;
         /// <summary>
-        /// Provides access to the underlying input action "Suelo/BOTON_PRUEBAS".
+        /// Provides access to the underlying input action "Suelo/Recargar".
         /// </summary>
-        public InputAction @BOTON_PRUEBAS => m_Wrapper.m_Suelo_BOTON_PRUEBAS;
+        public InputAction @Recargar => m_Wrapper.m_Suelo_Recargar;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1067,6 +1130,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_SueloActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_SueloActionsCallbackInterfaces.Add(instance);
+            @BOTON_PRUEBAS.started += instance.OnBOTON_PRUEBAS;
+            @BOTON_PRUEBAS.performed += instance.OnBOTON_PRUEBAS;
+            @BOTON_PRUEBAS.canceled += instance.OnBOTON_PRUEBAS;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
             @Movimiento.started += instance.OnMovimiento;
             @Movimiento.performed += instance.OnMovimiento;
             @Movimiento.canceled += instance.OnMovimiento;
@@ -1082,9 +1151,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Disparar.started += instance.OnDisparar;
             @Disparar.performed += instance.OnDisparar;
             @Disparar.canceled += instance.OnDisparar;
-            @BOTON_PRUEBAS.started += instance.OnBOTON_PRUEBAS;
-            @BOTON_PRUEBAS.performed += instance.OnBOTON_PRUEBAS;
-            @BOTON_PRUEBAS.canceled += instance.OnBOTON_PRUEBAS;
+            @Recargar.started += instance.OnRecargar;
+            @Recargar.performed += instance.OnRecargar;
+            @Recargar.canceled += instance.OnRecargar;
         }
 
         /// <summary>
@@ -1096,6 +1165,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="SueloActions" />
         private void UnregisterCallbacks(ISueloActions instance)
         {
+            @BOTON_PRUEBAS.started -= instance.OnBOTON_PRUEBAS;
+            @BOTON_PRUEBAS.performed -= instance.OnBOTON_PRUEBAS;
+            @BOTON_PRUEBAS.canceled -= instance.OnBOTON_PRUEBAS;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
             @Movimiento.started -= instance.OnMovimiento;
             @Movimiento.performed -= instance.OnMovimiento;
             @Movimiento.canceled -= instance.OnMovimiento;
@@ -1111,9 +1186,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Disparar.started -= instance.OnDisparar;
             @Disparar.performed -= instance.OnDisparar;
             @Disparar.canceled -= instance.OnDisparar;
-            @BOTON_PRUEBAS.started -= instance.OnBOTON_PRUEBAS;
-            @BOTON_PRUEBAS.performed -= instance.OnBOTON_PRUEBAS;
-            @BOTON_PRUEBAS.canceled -= instance.OnBOTON_PRUEBAS;
+            @Recargar.started -= instance.OnRecargar;
+            @Recargar.performed -= instance.OnRecargar;
+            @Recargar.canceled -= instance.OnRecargar;
         }
 
         /// <summary>
@@ -1350,6 +1425,20 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     public interface ISueloActions
     {
         /// <summary>
+        /// Method invoked when associated input action "BOTON_PRUEBAS" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnBOTON_PRUEBAS(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Pause" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPause(InputAction.CallbackContext context);
+        /// <summary>
         /// Method invoked when associated input action "Movimiento" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
@@ -1385,12 +1474,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnDisparar(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "BOTON_PRUEBAS" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Recargar" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnBOTON_PRUEBAS(InputAction.CallbackContext context);
+        void OnRecargar(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.
