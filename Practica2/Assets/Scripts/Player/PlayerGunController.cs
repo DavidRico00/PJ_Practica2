@@ -63,5 +63,9 @@ public class PlayerGunController : MonoBehaviour
     }
 
 
-
+    public void DejarDeDisparar()
+    {
+        if (armaActual != null && !gameManager.isPaused)
+            armaActual.setDisparoFalse();
+    }
 }

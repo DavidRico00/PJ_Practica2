@@ -190,9 +190,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11d10bc1e3991524bbeeeda68d08cfbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disparoS: {fileID: 8300000, guid: 905e61174786bdc419a8e34fb883c21e, type: 3}
+  disparoS: {fileID: 8300000, guid: afa2a7a7a813910488f35918c4e208d0, type: 3}
   recargaS: {fileID: 8300000, guid: 0e45bc6c93239a34c8091cacfaa8d3e9, type: 3}
   noAmmoS: {fileID: 8300000, guid: 7a7bb7c3265ae674fa07edb37fbf0a68, type: 3}
+  hitS: {fileID: 8300000, guid: d86c43329d4fce944b3d6f65e1350fd7, type: 3}
 --- !u!95 &3384003348751265505
 Animator:
   serializedVersion: 7

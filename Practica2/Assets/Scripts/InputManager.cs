@@ -4,7 +4,7 @@ using System.Collections;
 public class InputManager : MonoBehaviour
 {
     private PlayerController playerController;
-    PlayerGunController playerGunController;
+    private PlayerGunController playerGunController;
     private GameManager gameManager;
     private PlayerInput playerInput;
     public PlayerInput.SueloActions inputSuelo;
@@ -65,6 +65,7 @@ public class InputManager : MonoBehaviour
         {
             StopCoroutine(disparoCoroutine);
             disparoCoroutine = null;
+            playerGunController.DejarDeDisparar();
         }
     }
 
@@ -73,7 +74,7 @@ public class InputManager : MonoBehaviour
         while (true)
         {
             playerGunController.Disparar();
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.25f);
         }
     }
 }

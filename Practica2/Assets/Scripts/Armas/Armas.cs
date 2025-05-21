@@ -10,7 +10,7 @@ public abstract class Armas : MonoBehaviour
     protected Camera camara;
     private TextMeshProUGUI cargadorHUD;
     private LayerMask enemigoLayer;
-    public AudioClip disparoS, recargaS, noAmmoS;
+    public AudioClip disparoS, recargaS, noAmmoS, hitS;
     private AudioSource audioSource;
     protected Animator animator;
 
@@ -20,7 +20,7 @@ public abstract class Armas : MonoBehaviour
         camara = GetComponentInParent<Camera>();
         audioSource = camara.GetComponent<AudioSource>();
         enemigoLayer = LayerMask.GetMask("Enemigo");
-        animator = GetComponent<Animator>();      
+        animator = GetComponent<Animator>();
 
         SetTransform();
         actualizarHUD();
@@ -36,12 +36,17 @@ public abstract class Armas : MonoBehaviour
             return;
         }
 
+        animator.SetBool("disparo", true);
         cargador--;
         actualizarHUD();
         RaycastHit hit;
         audioSource.PlayOneShot(disparoS);
         if (Physics.Raycast(camara.transform.position, camara.transform.forward, out hit, range, enemigoLayer))
+        {
+            audioSource.PlayOneShot(hitS);
             hit.transform.GetComponent<EnemigoScript>().RecibirDanio(damage);
+        }
+            
     }
 
     private bool isReloading = false;
@@ -109,5 +114,11 @@ public abstract class Armas : MonoBehaviour
         }
 
 
+    }
+
+
+    public void setDisparoFalse()
+    {
+        animator.SetBool("disparo", false);
     }
 }

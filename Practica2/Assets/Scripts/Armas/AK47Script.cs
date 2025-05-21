@@ -6,9 +6,9 @@ public class AK47Script : Armas
     {
         damage = 25f;
         range = 100f;
-        cargadorMax = 30;
+        cargadorMax = 20;
         cargador = cargadorMax;
-        reservas = 90;
+        reservas = cargadorMax * 3;
 
         apuntando = false;
     }
