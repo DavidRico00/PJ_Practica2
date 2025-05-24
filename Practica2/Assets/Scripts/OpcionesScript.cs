@@ -15,7 +15,7 @@ public class OpcionesScript : MonoBehaviour
             sliderBrillo.value = valor;
 
         if (sliderVolumen != null)
-            sliderVolumen.value = PlayerPrefs.GetFloat("Volumen", 0.5f);
+            sliderVolumen.value = PlayerPrefs.GetFloat("Volumen", -20f);
 
         if (sliderSensibilidadX != null)
             sliderSensibilidadX.value = PlayerPrefs.GetFloat("SensibilidadX", 30f);
@@ -28,6 +28,7 @@ public class OpcionesScript : MonoBehaviour
 
     public void modificarVolumen(float valor)
     {
+        PlayerPrefs.SetFloat("Volumen", valor);
         audioMixer.SetFloat("Volumen", valor);
     }
 
