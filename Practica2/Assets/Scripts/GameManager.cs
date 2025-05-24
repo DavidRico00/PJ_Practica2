@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if (player == null || puntoInicial == null)
+            return;
+        
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         MoverPuntoInicial();
@@ -35,9 +38,15 @@ public class GameManager : MonoBehaviour
         cc.enabled = true;
     }
     
-    public void CambiarScena(int escena)
-    {
+    public void CambiarScena(int escena){
         SceneManager.LoadScene(escena);
+    }
+
+    public void BotonSalir(){
+        Application.Quit();
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #endif
     }
 
     public bool isPaused = false;

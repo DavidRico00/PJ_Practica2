@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
     {
         controlador = GetComponent<CharacterController>();
         inputManager = GetComponent<InputManager>();
+
+        sensibilidadX = PlayerPrefs.GetFloat("SensibilidadX", 30f);
+        sensibilidadY = PlayerPrefs.GetFloat("SensibilidadY", 30f);
     }
 
     void Update()
@@ -37,7 +40,7 @@ public class PlayerController : MonoBehaviour
                 promptText.text = interactuable.promptText;
                 if (inputManager.inputSuelo.Interactuar.triggered)
                     interactuable.BaseInteract();
-            }        
+            }
     }
 
     public void ProcesarMovimiento(Vector2 input)
@@ -75,4 +78,9 @@ public class PlayerController : MonoBehaviour
             velocidad = 5f;
     }
 
+    public void CambiarSensibilidad()
+    {
+        sensibilidadX = PlayerPrefs.GetFloat("SensibilidadX", 30f);
+        sensibilidadY = PlayerPrefs.GetFloat("SensibilidadY", 30f);
+    }
 }
