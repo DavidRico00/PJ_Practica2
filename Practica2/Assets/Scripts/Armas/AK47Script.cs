@@ -4,7 +4,7 @@ public class AK47Script : Armas
 {
     private void Awake()
     {
-        damage = 25f;
+        damage = 5f;
         range = 100f;
         cargadorMax = 20;
         cargador = cargadorMax;
