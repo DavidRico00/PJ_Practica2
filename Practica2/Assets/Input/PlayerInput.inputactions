@@ -6,7 +6,16 @@
             "id": "62e0909d-cf90-4d5b-b40f-f99a1ab91f42",
             "actions": [
                 {
-                    "name": "BOTON_PRUEBAS",
+                    "name": "BOTON_O",
+                    "type": "Button",
+                    "id": "65b0b98e-c751-46ac-b815-db35a0810bae",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BOTON_P",
                     "type": "Button",
                     "id": "ca254ee5-c599-40d3-9295-e2d0edafadbc",
                     "expectedControlType": "",
@@ -324,7 +333,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "BOTON_PRUEBAS",
+                    "action": "BOTON_P",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -380,6 +389,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Correr",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2f6cb552-d1ee-4a8e-b5f9-293ebb70f1ab",
+                    "path": "<Keyboard>/o",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BOTON_O",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

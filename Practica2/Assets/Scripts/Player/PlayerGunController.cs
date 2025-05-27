@@ -50,6 +50,10 @@ public class PlayerGunController : MonoBehaviour
             armaActual.Reload();
     }
 
+    public void SumarMunicion(int municion) {
+        if (armaActual != null)
+            armaActual.SumarMunicion(municion);
+    }
     public void Apuntar()
     {
         if (armaActual != null && !gameManager.isPaused)
