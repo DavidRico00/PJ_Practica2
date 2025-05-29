@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using TMPro;
 
 public class PlayerGunController : MonoBehaviour
 {
@@ -8,6 +9,10 @@ public class PlayerGunController : MonoBehaviour
     private Armas armaActual;
     public GameObject[] referenciasArmas;
     public Transform donde;
+
+    private int puntos = 0;
+
+    public TextMeshProUGUI puntosHUD;
 
     void Start()
     {
@@ -41,7 +46,8 @@ public class PlayerGunController : MonoBehaviour
     public void Disparar()
     {
         if (armaActual != null && !gameManager.isPaused)
-            armaActual.Shoot();
+            puntos += armaActual.Shoot();
+        actualizarHUD();
     }
 
     public void Recargar()
@@ -54,6 +60,7 @@ public class PlayerGunController : MonoBehaviour
         if (armaActual != null)
             armaActual.SumarMunicion(municion);
     }
+
     public void Apuntar()
     {
         if (armaActual != null && !gameManager.isPaused)
@@ -72,4 +79,11 @@ public class PlayerGunController : MonoBehaviour
         if (armaActual != null && !gameManager.isPaused)
             armaActual.setDisparoFalse();
     }
+
+
+    protected void actualizarHUD()
+    {
+        puntosHUD.text = String.Format("Puntos: {0}", puntos);
+    }
+
 }
