@@ -50,8 +50,7 @@ public abstract class Armas : MonoBehaviour
     }
 
     private bool isReloading = false;
-    public void Reload()
-    {
+    public void Reload(){
         if (cargador == cargadorMax || reservas <= 0)
             return;
 
@@ -78,6 +77,14 @@ public abstract class Armas : MonoBehaviour
         isReloading = false;
         actualizarHUD();
         animator.SetBool("recargando", false);
+    }
+
+    public void SumarMunicion(int cantidad)
+    {
+        reservas += cantidad;
+        if (reservas > 99)
+            reservas = 99;
+        actualizarHUD();
     }
 
     protected virtual void SetTransform() { }

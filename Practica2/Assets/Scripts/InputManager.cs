@@ -21,7 +21,7 @@ public class InputManager : MonoBehaviour
         inputSuelo.Salto.performed += ctx => playerController.Saltar();
         inputSuelo.Correr.started += ctx => playerController.Correr();
         inputSuelo.Correr.canceled += ctx => playerController.Correr();
-        
+
         inputSuelo.Recargar.performed += ctx => playerGunController.Recargar();
         inputSuelo.Disparar.started += ctx => IniciarDisparo();
         inputSuelo.Disparar.canceled += ctx => DetenerDisparo();
@@ -29,7 +29,8 @@ public class InputManager : MonoBehaviour
         inputSuelo.Apuntar.canceled += ctx => playerGunController.Desapuntar();
 
         inputSuelo.Pause.performed += ctx => gameManager.Pause();
-        inputSuelo.BOTON_PRUEBAS.performed += ctx => gameManager.BotonPruebas();
+        inputSuelo.BOTON_P.performed += ctx => gameManager.BotonPruebas_P();
+        inputSuelo.BOTON_O.performed += ctx => gameManager.BotonPruebas_O();
     }
 
     void FixedUpdate()

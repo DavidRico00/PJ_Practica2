@@ -5,6 +5,7 @@ using UnityEngine.AI;
 public class EnemigoScript : MonoBehaviour
 {
     public float vida;
+    public GameObject ammoBoxPrefab;
 
     public float distJugador;
 
@@ -56,6 +57,12 @@ public class EnemigoScript : MonoBehaviour
 
     private void Destruir()
     {
+        float probabilidad = Random.Range(0f, 1f);
+        if (probabilidad <= 0.5f && ammoBoxPrefab != null)
+        {
+            Vector3 posicionSpawn = transform.position + Vector3.up * 0.2f;
+            Instantiate(ammoBoxPrefab, posicionSpawn, Quaternion.identity);
+        }
         Destroy(gameObject);
     }
 
