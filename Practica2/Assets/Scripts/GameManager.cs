@@ -72,19 +72,13 @@ public class GameManager : MonoBehaviour
     }
 
     bool i = false;
-    public void BotonPruebas()
+    public void BotonPruebas_P()
     {
-        if (!i)
-        {
-            player.GetComponent<PlayerGunController>().SetGameObjectArma(0);
-        }
-        else
-        {
-            player.GetComponent<PlayerGunController>().SetGameObjectArma(-1);
-        }
-        i = !i;
+        player.GetComponent<PlayerHealth>().RecibirDanio(Random.Range(10, 20));
     }
-
- 
+    public void BotonPruebas_O()
+    {
+        player.GetComponent<PlayerHealth>().Curar(100);
+    }
 
 }

@@ -92,7 +92,16 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             ""id"": ""62e0909d-cf90-4d5b-b40f-f99a1ab91f42"",
             ""actions"": [
                 {
-                    ""name"": ""BOTON_PRUEBAS"",
+                    ""name"": ""BOTON_O"",
+                    ""type"": ""Button"",
+                    ""id"": ""65b0b98e-c751-46ac-b815-db35a0810bae"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""BOTON_P"",
                     ""type"": ""Button"",
                     ""id"": ""ca254ee5-c599-40d3-9295-e2d0edafadbc"",
                     ""expectedControlType"": """",
@@ -410,7 +419,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""BOTON_PRUEBAS"",
+                    ""action"": ""BOTON_P"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -466,6 +475,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Correr"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2f6cb552-d1ee-4a8e-b5f9-293ebb70f1ab"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BOTON_O"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -992,7 +1012,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
 }");
         // Suelo
         m_Suelo = asset.FindActionMap("Suelo", throwIfNotFound: true);
-        m_Suelo_BOTON_PRUEBAS = m_Suelo.FindAction("BOTON_PRUEBAS", throwIfNotFound: true);
+        m_Suelo_BOTON_O = m_Suelo.FindAction("BOTON_O", throwIfNotFound: true);
+        m_Suelo_BOTON_P = m_Suelo.FindAction("BOTON_P", throwIfNotFound: true);
         m_Suelo_Pause = m_Suelo.FindAction("Pause", throwIfNotFound: true);
         m_Suelo_Movimiento = m_Suelo.FindAction("Movimiento", throwIfNotFound: true);
         m_Suelo_Salto = m_Suelo.FindAction("Salto", throwIfNotFound: true);
@@ -1095,7 +1116,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     // Suelo
     private readonly InputActionMap m_Suelo;
     private List<ISueloActions> m_SueloActionsCallbackInterfaces = new List<ISueloActions>();
-    private readonly InputAction m_Suelo_BOTON_PRUEBAS;
+    private readonly InputAction m_Suelo_BOTON_O;
+    private readonly InputAction m_Suelo_BOTON_P;
     private readonly InputAction m_Suelo_Pause;
     private readonly InputAction m_Suelo_Movimiento;
     private readonly InputAction m_Suelo_Salto;
@@ -1117,9 +1139,13 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// </summary>
         public SueloActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "Suelo/BOTON_PRUEBAS".
+        /// Provides access to the underlying input action "Suelo/BOTON_O".
         /// </summary>
-        public InputAction @BOTON_PRUEBAS => m_Wrapper.m_Suelo_BOTON_PRUEBAS;
+        public InputAction @BOTON_O => m_Wrapper.m_Suelo_BOTON_O;
+        /// <summary>
+        /// Provides access to the underlying input action "Suelo/BOTON_P".
+        /// </summary>
+        public InputAction @BOTON_P => m_Wrapper.m_Suelo_BOTON_P;
         /// <summary>
         /// Provides access to the underlying input action "Suelo/Pause".
         /// </summary>
@@ -1182,9 +1208,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_SueloActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_SueloActionsCallbackInterfaces.Add(instance);
-            @BOTON_PRUEBAS.started += instance.OnBOTON_PRUEBAS;
-            @BOTON_PRUEBAS.performed += instance.OnBOTON_PRUEBAS;
-            @BOTON_PRUEBAS.canceled += instance.OnBOTON_PRUEBAS;
+            @BOTON_O.started += instance.OnBOTON_O;
+            @BOTON_O.performed += instance.OnBOTON_O;
+            @BOTON_O.canceled += instance.OnBOTON_O;
+            @BOTON_P.started += instance.OnBOTON_P;
+            @BOTON_P.performed += instance.OnBOTON_P;
+            @BOTON_P.canceled += instance.OnBOTON_P;
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
@@ -1223,9 +1252,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="SueloActions" />
         private void UnregisterCallbacks(ISueloActions instance)
         {
-            @BOTON_PRUEBAS.started -= instance.OnBOTON_PRUEBAS;
-            @BOTON_PRUEBAS.performed -= instance.OnBOTON_PRUEBAS;
-            @BOTON_PRUEBAS.canceled -= instance.OnBOTON_PRUEBAS;
+            @BOTON_O.started -= instance.OnBOTON_O;
+            @BOTON_O.performed -= instance.OnBOTON_O;
+            @BOTON_O.canceled -= instance.OnBOTON_O;
+            @BOTON_P.started -= instance.OnBOTON_P;
+            @BOTON_P.performed -= instance.OnBOTON_P;
+            @BOTON_P.canceled -= instance.OnBOTON_P;
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
@@ -1489,12 +1521,19 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     public interface ISueloActions
     {
         /// <summary>
-        /// Method invoked when associated input action "BOTON_PRUEBAS" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "BOTON_O" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnBOTON_PRUEBAS(InputAction.CallbackContext context);
+        void OnBOTON_O(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "BOTON_P" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnBOTON_P(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Pause" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

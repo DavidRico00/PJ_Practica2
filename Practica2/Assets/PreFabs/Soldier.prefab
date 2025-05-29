@@ -612,7 +612,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2639c1beba8e0d346b3f08a91c475788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vida: 0
+  vida: 100
+  ammoBoxPrefab: {fileID: 2145930178592477867, guid: bf28d7861f671cb438a357d121f24d8f, type: 3}
 --- !u!136 &4188908891923709854
 CapsuleCollider:
   m_ObjectHideFlags: 0
