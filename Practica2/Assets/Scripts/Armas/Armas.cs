@@ -26,14 +26,15 @@ public abstract class Armas : MonoBehaviour
         actualizarHUD();
     }
 
-    public void Shoot()
+    public int Shoot()
     {
+        int p = 0;
         if (isReloading)
-            return;
+            return p;
         if (cargador == 0)
         {
             audioSource.PlayOneShot(noAmmoS);
-            return;
+            return p;
         }
 
         animator.SetBool("disparo", true);
@@ -43,10 +44,12 @@ public abstract class Armas : MonoBehaviour
         audioSource.PlayOneShot(disparoS);
         if (Physics.Raycast(camara.transform.position, camara.transform.forward, out hit, range, enemigoLayer))
         {
+            p += 10;
             audioSource.PlayOneShot(hitS);
-            hit.transform.GetComponent<EnemigoScript>().RecibirDanio(damage);
+            if (hit.transform.GetComponent<EnemigoScript>().RecibirDanio(damage)) p += 100;
         }
-            
+
+        return p;
     }
 
     private bool isReloading = false;

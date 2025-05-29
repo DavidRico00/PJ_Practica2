@@ -37,14 +37,16 @@ public class EnemigoScript : MonoBehaviour
 
     }
 
-    public void RecibirDanio(float danio)
+    public bool RecibirDanio(float danio)
     {
         vida -= danio;
         Debug.Log("Nombre: " + gameObject.name + ", recibiendo daño: " + danio + ", vida actual: " + vida);
         if (vida <= 0)
         {
             Destruir();
+            return true;
         }
+       return false;
     }
 
     private void Destruir()
@@ -113,9 +115,17 @@ public class EnemigoScript : MonoBehaviour
         }
     }
 
-
+    private float timeToAttack = 0;
     private void Atacar()
     {
+        timeToAttack += Time.deltaTime;
+        if (timeToAttack < 4)
+        {
+            return;
+        }
+
+        timeToAttack = 0;
+
         Debug.Log("Atacando al jugador");
         //GameObject jugador = GameObject.FindWithTag("Player");
         if (jugador != null)
@@ -128,6 +138,12 @@ public class EnemigoScript : MonoBehaviour
             }
             animator.SetBool("shoot", true);
             animator.SetBool("running", false);
+
+           float probabilidadAtaque = Random.Range(0, 100);
+            if (probabilidadAtaque <= 30)
+            {
+                jugador.GetComponent<PlayerHealth>().RecibirDanio(5f);
+            }
         }
 
     }
