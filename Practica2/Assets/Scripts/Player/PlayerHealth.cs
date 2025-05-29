@@ -19,8 +19,6 @@ public class PlayerHealth : MonoBehaviour
     {
         vida = Mathf.Clamp(vida, 0f, vidaMaxima);
         ActualizarUIVida();
-
-
     }
 
     public void ActualizarUIVida()
@@ -40,7 +38,7 @@ public class PlayerHealth : MonoBehaviour
         if( fillF < hFraction)
         {
             backHealthBar.fillAmount = hFraction;
-            backHealthBar.color = Color.green;
+            backHealthBar.color = Color.yellow;
             lerpTimer += Time.deltaTime;
             float percent = lerpTimer / chipSpeed;
             frontHealthBar.fillAmount = Mathf.Lerp(fillF, backHealthBar.fillAmount, percent);

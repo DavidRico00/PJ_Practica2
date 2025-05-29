@@ -6,39 +6,31 @@ public class EnemigoScript : MonoBehaviour
 {
     public float vida;
     public GameObject ammoBoxPrefab;
-
     public float distJugador;
-
-    private GameObject refugio;
+    private GameObject refugio, jugador;
     private Animator animator;
-    
     public NavMeshAgent navMeshAgent;
-
-    private bool Recargando = false;
-
+    private bool recargandoVida = false;
 
     void Start()
     {
         animator = GetComponent<Animator>();
-
         refugio = GameObject.FindWithTag("Refugio");
-
+        jugador = GameObject.FindWithTag("Player");
         navMeshAgent = GetComponent<NavMeshAgent>();
-
     }
 
 
     void Update()
     {
-
-        GameObject jugador = GameObject.FindWithTag("Player");
+        //GameObject jugador = GameObject.FindWithTag("Player");
         if (jugador != null)
         {
             float dist = Vector3.Distance(transform.position, jugador.transform.position);
             distJugador = Mathf.Clamp(dist, 0f, 60f);
         }
 
-        if (vida > 0 && !Recargando)
+        if (vida > 0 && !recargandoVida)
         {
             FuzzyDecision(vida, distJugador);
         }
@@ -72,7 +64,6 @@ public class EnemigoScript : MonoBehaviour
         float distMedia = pertenenciaTriangular(distJugador, 10f, 15f, 30f);
         float distLejos = pertenenciaTriangular(distJugador, 25f, 40f, 60f);
 
-
         float bajaV = pertenenciaTriangular(vida, 0f, 0f, 50f);
         float mediaV = pertenenciaTriangular(vida, 20f, 50f, 80f);
         float altaV = pertenenciaTriangular(vida, 50f, 100f, 100f);
@@ -86,7 +77,7 @@ public class EnemigoScript : MonoBehaviour
 
         float valor = (moverhaciaJugador * 0 + retirarse * 50 + atacar * 100) / total;
 
-        Debug.Log("Valor de decisión: " + valor + ", Retirarse: " + retirarse + ", Atacar: " + atacar + ", Mover al jugador: " + moverhaciaJugador);
+        //Debug.Log("Valor de decisión: " + valor + ", Retirarse: " + retirarse + ", Atacar: " + atacar + ", Mover al jugador: " + moverhaciaJugador);
         if (valor < 33f)
         {
            MoverAlJugador(); 
@@ -126,7 +117,7 @@ public class EnemigoScript : MonoBehaviour
     private void Atacar()
     {
         Debug.Log("Atacando al jugador");
-        GameObject jugador = GameObject.FindWithTag("Player");
+        //GameObject jugador = GameObject.FindWithTag("Player");
         if (jugador != null)
         {
             Vector3 direccion = (jugador.transform.position - transform.position);
@@ -140,7 +131,6 @@ public class EnemigoScript : MonoBehaviour
         }
 
     }
-
 
     private void Retirarse()
     {
@@ -185,7 +175,7 @@ public class EnemigoScript : MonoBehaviour
             Debug.Log("Animación de correr activada.");
         }
 
-        GameObject jugador = GameObject.FindWithTag("Player");
+        //GameObject jugador = GameObject.FindWithTag("Player");
         if (jugador != null)
         {
             if (navMeshAgent != null && navMeshAgent.isActiveAndEnabled && navMeshAgent.isOnNavMesh)
@@ -199,7 +189,7 @@ public class EnemigoScript : MonoBehaviour
 
     private void RegenerarVida()
     {
-        Recargando = true;
+        recargandoVida = true;
         StartCoroutine(HealthRegenCoroutine());
     }
 
@@ -212,6 +202,6 @@ public class EnemigoScript : MonoBehaviour
             vida = Mathf.Min(vida, 100f);
             yield return new WaitForSeconds(2f);
         }
-        Recargando = false;
+        recargandoVida = false;
     }
 }

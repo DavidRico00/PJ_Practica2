@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
         isPaused = !isPaused;
     }
 
-    bool i = false;
+ 
     public void BotonPruebas_P()
     {
         player.GetComponent<PlayerHealth>().RecibirDanio(Random.Range(10, 20));
