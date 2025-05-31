@@ -1,6 +1,7 @@
-using Palmmedia.ReportGenerator.Core.Reporting.Builders;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using System;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -8,10 +9,14 @@ public class PlayerHealth : MonoBehaviour
     private float vida, lerpTimer;
     public float vidaMaxima = 100f, chipSpeed = 2f;
     public Image frontHealthBar, backHealthBar;
+    private int numBotiquines = 2;
+
+    public TextMeshProUGUI numeroBotiquinesHUD;
 
     void Start()
     {
         vida = vidaMaxima;
+        ActualizarHUDBotiquines();
     }
 
     // Update is called once per frame
@@ -35,7 +40,7 @@ public class PlayerHealth : MonoBehaviour
             float percent = lerpTimer / chipSpeed;
             backHealthBar.fillAmount = Mathf.Lerp(fillB, hFraction, percent);
         }
-        if( fillF < hFraction)
+        if (fillF < hFraction)
         {
             backHealthBar.fillAmount = hFraction;
             backHealthBar.color = Color.yellow;
@@ -50,10 +55,26 @@ public class PlayerHealth : MonoBehaviour
         vida -= danio;
         lerpTimer = 0f;
     }
-    
-    public void Curar(float cantidad)
+
+    public void Curar()
     {
-        vida = cantidad;
-        lerpTimer = 0f;
+        if (numBotiquines > 0)
+        {
+            vida = vidaMaxima;
+            lerpTimer = 0f;
+            numBotiquines--;
+            ActualizarHUDBotiquines();
+        }
+    }
+
+    public void AumentarBotiquin()
+    {
+        numBotiquines++;
+        ActualizarHUDBotiquines();
+    }
+    
+    private void ActualizarHUDBotiquines()
+    {
+        numeroBotiquinesHUD.text = String.Format("x {0}", numBotiquines);
     }
 }

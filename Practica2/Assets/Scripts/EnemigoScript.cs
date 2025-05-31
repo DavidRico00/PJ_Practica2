@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class EnemigoScript : MonoBehaviour
 {
     public float vida;
-    public GameObject ammoBoxPrefab;
+    public GameObject ammoBoxPrefab, healthKitPrefab;
     public float distJugador;
     private GameObject refugio, jugador;
     private Animator animator;
@@ -56,6 +56,15 @@ public class EnemigoScript : MonoBehaviour
         {
             Vector3 posicionSpawn = transform.position + Vector3.up * 0.2f;
             Instantiate(ammoBoxPrefab, posicionSpawn, Quaternion.identity);
+        }
+        else
+        {
+            probabilidad = Random.Range(0f, 1f);
+            if (probabilidad >= 0.6f)
+            {
+                Vector3 posicionSpawn = transform.position + Vector3.up * 0.2f;
+                Instantiate(healthKitPrefab, posicionSpawn, Quaternion.identity);
+            }
         }
         Destroy(gameObject);
     }
@@ -139,7 +148,7 @@ public class EnemigoScript : MonoBehaviour
             animator.SetBool("shoot", true);
             animator.SetBool("running", false);
 
-           float probabilidadAtaque = Random.Range(0, 100);
+            float probabilidadAtaque = Random.Range(0, 100);
             if (probabilidadAtaque <= 30)
             {
                 jugador.GetComponent<PlayerHealth>().RecibirDanio(5f);

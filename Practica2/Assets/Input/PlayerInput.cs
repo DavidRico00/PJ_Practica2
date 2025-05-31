@@ -189,6 +189,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Curarse"",
+                    ""type"": ""Button"",
+                    ""id"": ""bed5e8f5-4897-4b2b-a2a1-12f87cc5ba14"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -486,6 +495,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""BOTON_O"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1a70fab6-6876-4e88-a32d-8acc85be145f"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Curarse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1023,6 +1043,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Suelo_Recargar = m_Suelo.FindAction("Recargar", throwIfNotFound: true);
         m_Suelo_Apuntar = m_Suelo.FindAction("Apuntar", throwIfNotFound: true);
         m_Suelo_Correr = m_Suelo.FindAction("Correr", throwIfNotFound: true);
+        m_Suelo_Curarse = m_Suelo.FindAction("Curarse", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1127,6 +1148,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Suelo_Recargar;
     private readonly InputAction m_Suelo_Apuntar;
     private readonly InputAction m_Suelo_Correr;
+    private readonly InputAction m_Suelo_Curarse;
     /// <summary>
     /// Provides access to input actions defined in input action map "Suelo".
     /// </summary>
@@ -1182,6 +1204,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Suelo/Correr".
         /// </summary>
         public InputAction @Correr => m_Wrapper.m_Suelo_Correr;
+        /// <summary>
+        /// Provides access to the underlying input action "Suelo/Curarse".
+        /// </summary>
+        public InputAction @Curarse => m_Wrapper.m_Suelo_Curarse;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1241,6 +1267,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Correr.started += instance.OnCorrer;
             @Correr.performed += instance.OnCorrer;
             @Correr.canceled += instance.OnCorrer;
+            @Curarse.started += instance.OnCurarse;
+            @Curarse.performed += instance.OnCurarse;
+            @Curarse.canceled += instance.OnCurarse;
         }
 
         /// <summary>
@@ -1285,6 +1314,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Correr.started -= instance.OnCorrer;
             @Correr.performed -= instance.OnCorrer;
             @Correr.canceled -= instance.OnCorrer;
+            @Curarse.started -= instance.OnCurarse;
+            @Curarse.performed -= instance.OnCurarse;
+            @Curarse.canceled -= instance.OnCurarse;
         }
 
         /// <summary>
@@ -1597,6 +1629,13 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnCorrer(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Curarse" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCurarse(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

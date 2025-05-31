@@ -5,6 +5,7 @@ public class InputManager : MonoBehaviour
 {
     private PlayerController playerController;
     private PlayerGunController playerGunController;
+    private PlayerHealth playerHealth;
     private GameManager gameManager;
     private PlayerInput playerInput;
     public PlayerInput.SueloActions inputSuelo;
@@ -13,6 +14,7 @@ public class InputManager : MonoBehaviour
     {
         playerController = GetComponent<PlayerController>();
         playerGunController = GetComponent<PlayerGunController>();
+        playerHealth = GetComponent<PlayerHealth>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
         playerInput = new PlayerInput();
@@ -27,6 +29,7 @@ public class InputManager : MonoBehaviour
         inputSuelo.Disparar.canceled += ctx => DetenerDisparo();
         inputSuelo.Apuntar.started += ctx => playerGunController.Apuntar();
         inputSuelo.Apuntar.canceled += ctx => playerGunController.Desapuntar();
+        inputSuelo.Curarse.performed += ctx => playerHealth.Curar();
 
         inputSuelo.Pause.performed += ctx => gameManager.Pause();
         inputSuelo.BOTON_P.performed += ctx => gameManager.BotonPruebas_P();

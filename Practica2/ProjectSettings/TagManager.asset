@@ -10,6 +10,7 @@ TagManager:
   - MiraPuntoRojo
   - MiraDefault
   - Refugio
+  - SpawnEnemy
   layers:
   - Default
   - TransparentFX

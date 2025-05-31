@@ -74,11 +74,11 @@ public class GameManager : MonoBehaviour
  
     public void BotonPruebas_P()
     {
-        player.GetComponent<PlayerHealth>().RecibirDanio(Random.Range(10, 20));
+        GameObject.FindGameObjectWithTag("SpawnEnemy").GetComponent<EnemySpawn>().SpawnEnemy();
     }
     public void BotonPruebas_O()
     {
-        player.GetComponent<PlayerHealth>().Curar(100);
+        
     }
 
 }

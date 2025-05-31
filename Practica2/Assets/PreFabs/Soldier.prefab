@@ -745,6 +745,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vida: 100
   ammoBoxPrefab: {fileID: 2145930178592477867, guid: bf28d7861f671cb438a357d121f24d8f, type: 3}
+  healthKitPrefab: {fileID: 1458794666124322756, guid: 83c6fddb5c3e55948a496f95980212e7, type: 3}
   distJugador: 60
   navMeshAgent: {fileID: 2225868842781547648}
   distancia: 0
