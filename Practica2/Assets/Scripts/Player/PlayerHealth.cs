@@ -13,10 +13,14 @@ public class PlayerHealth : MonoBehaviour
 
     public TextMeshProUGUI numeroBotiquinesHUD;
 
+    private AudioSource audioSource;
+    public AudioClip muerteS;
+
     void Start()
     {
         vida = vidaMaxima;
         ActualizarHUDBotiquines();
+        audioSource = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -28,7 +32,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void ActualizarUIVida()
     {
-        Debug.Log(vida);
+        //Debug.Log(vida);
         float fillF = frontHealthBar.fillAmount;
         float fillB = backHealthBar.fillAmount;
         float hFraction = vida / vidaMaxima;
@@ -54,6 +58,11 @@ public class PlayerHealth : MonoBehaviour
     {
         vida -= danio;
         lerpTimer = 0f;
+        if (vida == 0)
+        {
+            audioSource.PlayOneShot(muerteS);
+            GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().mostrarPantallaFinal();
+        }
     }
 
     public void Curar()

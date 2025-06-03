@@ -1,23 +1,29 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
+using Unity.VisualScripting;
 
 public class EnemigoScript : MonoBehaviour
 {
     public float vida;
     public GameObject ammoBoxPrefab, healthKitPrefab;
     public float distJugador;
-    private GameObject refugio, jugador;
+    public GameObject refugio;
+    private GameObject jugador;
     private Animator animator;
     public NavMeshAgent navMeshAgent;
     private bool recargandoVida = false;
 
+    private AudioSource audioSource;
+    public AudioClip muerteS, shootS;
+
     void Start()
     {
         animator = GetComponent<Animator>();
-        refugio = GameObject.FindWithTag("Refugio");
+        if (refugio == null) refugio = GameObject.FindWithTag("Refugio");
         jugador = GameObject.FindWithTag("Player");
         navMeshAgent = GetComponent<NavMeshAgent>();
+        audioSource = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioSource>();
     }
 
 
@@ -40,9 +46,10 @@ public class EnemigoScript : MonoBehaviour
     public bool RecibirDanio(float danio)
     {
         vida -= danio;
-        Debug.Log("Nombre: " + gameObject.name + ", recibiendo daño: " + danio + ", vida actual: " + vida);
+        //Debug.Log("Nombre: " + gameObject.name + ", recibiendo daño: " + danio + ", vida actual: " + vida);
         if (vida <= 0)
         {
+            audioSource.PlayOneShot(muerteS);
             Destruir();
             return true;
         }
@@ -135,7 +142,7 @@ public class EnemigoScript : MonoBehaviour
 
         timeToAttack = 0;
 
-        Debug.Log("Atacando al jugador");
+        //Debug.Log("Atacando al jugador");
         //GameObject jugador = GameObject.FindWithTag("Player");
         if (jugador != null)
         {
@@ -151,6 +158,7 @@ public class EnemigoScript : MonoBehaviour
             float probabilidadAtaque = Random.Range(0, 100);
             if (probabilidadAtaque <= 30)
             {
+                audioSource.PlayOneShot(shootS);
                 jugador.GetComponent<PlayerHealth>().RecibirDanio(5f);
             }
         }
@@ -161,7 +169,7 @@ public class EnemigoScript : MonoBehaviour
     {
         navMeshAgent.stoppingDistance = 0.0f;
 
-        Debug.Log("Retirándose del jugador");
+        //Debug.Log("Retirándose del jugador");
         if(refugio == null)  refugio = GameObject.FindWithTag("Refugio");
 
         if (refugio != null)
@@ -178,7 +186,7 @@ public class EnemigoScript : MonoBehaviour
                 animator.SetBool("running", true);
                 animator.SetBool("shoot", false);
             }
-            Debug.Log(distJugador + " - Distancia al refugio: " + Vector3.Distance(transform.position, refugio.transform.position));
+            //Debug.Log(distJugador + " - Distancia al refugio: " + Vector3.Distance(transform.position, refugio.transform.position));
             if (Vector3.Distance(transform.position, refugio.transform.position) < 2f)
             {
                 animator.SetBool("running", false);
@@ -192,12 +200,12 @@ public class EnemigoScript : MonoBehaviour
     private void MoverAlJugador()
     {
         navMeshAgent.stoppingDistance = distancia; 
-        Debug.Log("Moviendo hacia el jugador");
+        //Debug.Log("Moviendo hacia el jugador");
         if(animator != null)
         {
             animator.SetBool("running", true);
             animator.SetBool("shoot", false);   
-            Debug.Log("Animación de correr activada.");
+            //Debug.Log("Animación de correr activada.");
         }
 
         //GameObject jugador = GameObject.FindWithTag("Player");
@@ -222,7 +230,7 @@ public class EnemigoScript : MonoBehaviour
     {
         while (vida < 100f)
         {
-            Debug.Log("Regenerando vida: " + vida);
+            //Debug.Log("Regenerando vida: " + vida);
             vida += 10f;
             vida = Mathf.Min(vida, 100f);
             yield return new WaitForSeconds(2f);

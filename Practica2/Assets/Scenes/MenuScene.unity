@@ -1261,6 +1261,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1592045368}
+        m_TargetAssemblyTypeName: ControladorPuntaciones, Assembly-CSharp
+        m_MethodName: ActualizarTextoRanking
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 1301177005}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -4807,6 +4819,7 @@ MonoBehaviour:
   player: {fileID: 0}
   isPaused: 0
   menuPause: {fileID: 0}
+  pantallaFinal: {fileID: 0}
 --- !u!1 &1956225004
 GameObject:
   m_ObjectHideFlags: 0
@@ -4916,8 +4929,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9.8816, y: -50.5389}
-  m_SizeDelta: {x: 1230.0955, y: 650.9001}
+  m_AnchoredPosition: {x: 2.962, y: -25}
+  m_SizeDelta: {x: 1622.991, y: 650.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2076896891
 MonoBehaviour:
@@ -4940,7 +4953,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: 
-  m_isRightToLeft: 1
+  m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 8b5a55a72f00f1d41846519a9c95cc8c, type: 2}
   m_fontSharedMaterials: []

@@ -11,6 +11,7 @@ TagManager:
   - MiraDefault
   - Refugio
   - SpawnEnemy
+  - Enemy
   layers:
   - Default
   - TransparentFX

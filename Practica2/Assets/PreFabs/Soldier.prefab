@@ -687,7 +687,7 @@ GameObject:
   - component: {fileID: 2225868842781547648}
   m_Layer: 7
   m_Name: Soldier
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -747,7 +747,10 @@ MonoBehaviour:
   ammoBoxPrefab: {fileID: 2145930178592477867, guid: bf28d7861f671cb438a357d121f24d8f, type: 3}
   healthKitPrefab: {fileID: 1458794666124322756, guid: 83c6fddb5c3e55948a496f95980212e7, type: 3}
   distJugador: 60
+  refugio: {fileID: 0}
   navMeshAgent: {fileID: 2225868842781547648}
+  muerteS: {fileID: 8300000, guid: 316938afb1a6cd048b4eaecf7c92a922, type: 3}
+  shootS: {fileID: 8300000, guid: 9abf20359d498634f81835bc55fcae0c, type: 3}
   distancia: 0
 --- !u!136 &633836547126921520
 CapsuleCollider:

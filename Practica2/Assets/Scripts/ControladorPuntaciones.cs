@@ -1,13 +1,12 @@
 using UnityEngine;
 using System.IO;
-using UnityEngine.UI;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using System;
 
 
-[System.Serializable]
+[Serializable]
 public class Puntuaciones
 {
     public int puntuacion;
@@ -23,7 +22,7 @@ public class Puntuaciones
 
     public override string ToString()
     {
-        return $"{nombreJugador}\t\t {puntuacion} puntos\t\t {fecha}\n";
+        return $"{nombreJugador,-15}{puntuacion,-10}{fecha,-15}\n";
     }
 }
 
@@ -38,17 +37,21 @@ public class ControladorPuntaciones : MonoBehaviour
     public void Start()
     {
         CargarDatos();
-        ActualizarTextoRanking();
+        if (textoRanking != null)
+            ActualizarTextoRanking();
     }
-    public void AñadirPuntuacion(Puntuaciones puntacion)
+
+    public void AnadirPuntuacion(int p, string nombre)
     {
+        Puntuaciones puntacion = new Puntuaciones(p, nombre, DateTime.Now.ToString("dd/MM/yyyy"));
+
         listaPuntuaciones.Add(puntacion);
         listaPuntuaciones.Sort((x, y) => y.puntuacion.CompareTo(x.puntuacion));
         if (listaPuntuaciones.Count > 5)
         {
             listaPuntuaciones.RemoveRange(5, listaPuntuaciones.Count - 5);
         }
-        ActualizarTextoRanking();
+        GuardarDatos();
     }
 
     public void GuardarDatos()
@@ -60,7 +63,6 @@ public class ControladorPuntaciones : MonoBehaviour
         {
             formatter.Serialize(file, listaPuntuaciones);
         }
-        ActualizarTextoRanking();
     }
 
     public void CargarDatos()
@@ -75,27 +77,31 @@ public class ControladorPuntaciones : MonoBehaviour
         }
     }
 
-    public string obtenerPunt()
+    public string obtenerPuntuaciones()
     {
-        string texto = "NOMBRE\t\tPUNTOS\t\tFECHA\n";
-        texto += "-----------------------------------------------------------\n\n"; 
-        foreach (var p in listaPuntuaciones)
-        {
-            texto += p;
-        }
+        string texto = "";
+    texto += $"{"NOMBRE",-15}{"PUNTOS",-10}{"FECHA",-15}\n";
+    texto += "---------------------------------------------\n\n";
+
+    foreach (var p in listaPuntuaciones)
+    {
+        texto += p;
+    }
+
         return texto;
     }
 
     public void EliminarTodasLasPuntuaciones()
     {
         listaPuntuaciones.Clear();
+        GuardarDatos();
     }
 
     public void ActualizarTextoRanking()
     {
         if (textoRanking != null)
         {
-            textoRanking.text = obtenerPunt();
+            textoRanking.text = obtenerPuntuaciones();
         }
     }
 }

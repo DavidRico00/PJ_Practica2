@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     {
         if (player == null || puntoInicial == null)
             return;
-        
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         MoverPuntoInicial();
@@ -37,16 +37,18 @@ public class GameManager : MonoBehaviour
         player.transform.position = puntoInicial.position;
         cc.enabled = true;
     }
-    
-    public void CambiarScena(int escena){
+
+    public void CambiarScena(int escena)
+    {
         SceneManager.LoadScene(escena);
     }
 
-    public void BotonSalir(){
+    public void BotonSalir()
+    {
         Application.Quit();
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
-        #endif
+#endif
     }
 
     public bool isPaused = false;
@@ -71,14 +73,28 @@ public class GameManager : MonoBehaviour
         isPaused = !isPaused;
     }
 
- 
+    public GameObject pantallaFinal;
+    public void mostrarPantallaFinal()
+    {
+        Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        isPaused = true;
+
+        GameObject[] enemigos = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemigo in enemigos)
+            Destroy(enemigo);
+
+        pantallaFinal.SetActive(true);
+    }
+
     public void BotonPruebas_P()
     {
-        GameObject.FindGameObjectWithTag("SpawnEnemy").GetComponent<EnemySpawn>().SpawnEnemy();
+        GameObject.FindGameObjectWithTag("SpawnEnemy").GetComponent<EnemySpawn>().SpawnEnemy(1);
     }
     public void BotonPruebas_O()
     {
-        
+
     }
 
 }

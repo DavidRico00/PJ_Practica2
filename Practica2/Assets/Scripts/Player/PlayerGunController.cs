@@ -11,7 +11,6 @@ public class PlayerGunController : MonoBehaviour
     public Transform donde;
 
     private int puntos = 0;
-
     public TextMeshProUGUI puntosHUD;
 
     void Start()
@@ -56,7 +55,8 @@ public class PlayerGunController : MonoBehaviour
             armaActual.Reload();
     }
 
-    public void SumarMunicion(int municion) {
+    public void SumarMunicion(int municion)
+    {
         if (armaActual != null)
             armaActual.SumarMunicion(municion);
     }
@@ -86,4 +86,19 @@ public class PlayerGunController : MonoBehaviour
         puntosHUD.text = String.Format("Puntos: {0}", puntos);
     }
 
+    public TMP_InputField inputNombre;
+    public void subirPuntuacion()
+    {
+        GameObject gm = GameObject.FindGameObjectWithTag("GameManager");
+        if (gm != null)
+        {
+            ControladorPuntaciones cp = gm.GetComponent<ControladorPuntaciones>();
+            if (cp != null)
+                cp.AnadirPuntuacion(puntos, inputNombre.text);
+            else
+                Debug.Log("No se ha encontrado el script Controlador Puntuaciones");
+        }
+        else
+            Debug.Log("No se ha encontrado el GameObject con TAG GameManager");
+    }
 }

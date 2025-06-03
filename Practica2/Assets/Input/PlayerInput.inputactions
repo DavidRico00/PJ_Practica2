@@ -381,6 +381,17 @@
                 },
                 {
                     "name": "",
+                    "id": "fbf55401-76cb-4627-8d5f-d7e583cd00da",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "7a89e7b3-a37b-4272-9694-0eeb9946bb50",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
@@ -392,8 +403,30 @@
                 },
                 {
                     "name": "",
+                    "id": "120c7b9f-9cea-425c-bdf0-aefd469e494f",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Apuntar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "5b1d416a-a27b-4394-8a1d-4767f4385779",
                     "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Correr",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fbfa2e37-1c3f-454e-95f1-5bd6ae31bbea",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -416,6 +449,17 @@
                     "name": "",
                     "id": "1a70fab6-6876-4e88-a32d-8acc85be145f",
                     "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Curarse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ce65a459-532b-45cc-b594-90557caaca58",
+                    "path": "<Gamepad>/dpad/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
